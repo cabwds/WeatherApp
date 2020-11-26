@@ -31,7 +31,7 @@
                             </div>
                             <div class="control">
                                 <!-- make button to type submit -->
-                                <button type="submit" class="button is-info">
+                                <button type="submit" class="button is-info" name="_add_button">
                                     Add City
                                 </button>
                             </div>
@@ -64,6 +64,13 @@
                                     </p>
                                 </div>
                             </div>
+                            <form method="POST"> {% csrf_token %}
+                                <div class="control">
+                                    <button type="submit" class="button is-info" name="_delete_button" value="{{city_weather.city_id}}">
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
                         </article>
                     </div>
                     {% endfor %}

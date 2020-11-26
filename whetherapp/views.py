@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import requests
 from .models import City
 from .forms import CityForm
@@ -12,10 +12,17 @@ def index(request):
     
     # to differentiate POST and GET
     if request.method == 'POST':
-        #print(request.POST)
-        form = CityForm(request.POST)
-        form.save()
+        print(request.POST)
+        if "_add_button" in request.POST : 
+            form = CityForm(request.POST)
+            form.save()
+        elif "_delete_button" in request.POST :
+            del_city_id = request.POST['_delete_button']
+            #print(del_item) 
+            del_item = get_object_or_404(City, pk=del_city_id)
+            del_item.delete()
 
+    
     form = CityForm()
 
     # retrieve data from City model 
@@ -28,6 +35,7 @@ def index(request):
         #print(r)
 
         city_weather = { 
+            'city_id' : city.pk,
             'city' : city.name,
             'temperature' : r['main']['temp'],
             'description' : r['weather'][0]['description'],
