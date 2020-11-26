@@ -36,6 +36,9 @@
                                 </button>
                             </div>
                         </div>
+                        {% if message %}
+                            <div class="notification {{message_class}}"> {{ message }} </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>
@@ -64,13 +67,20 @@
                                     </p>
                                 </div>
                             </div>
-                            <form method="POST"> {% csrf_token %}
-                                <div class="control">
-                                    <button type="submit" class="button is-info" name="_delete_button" value="{{city_weather.city_id}}">
-                                        Delete
-                                    </button>
-                                </div>
-                            </form>
+                            <!-- self done delete 
+                                <form method="POST"> {% csrf_token %}
+                                    <div class="control">
+                                        <button type="submit" class="button is-info" name="_delete_button" value="{{city_weather.city_id}}">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </form>
+                            -->
+                            <div class="media-right">
+                                <a href="{% url 'delete_city' city_weather.city %}">
+                                    <button class="delete"></button>
+                                </a>
+                            </div>
                         </article>
                     </div>
                     {% endfor %}
