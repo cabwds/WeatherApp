@@ -21,7 +21,7 @@ def index(request):
         if "_add_button" in request.POST : 
             form = CityForm(request.POST)
             if form.is_valid():
-                new_city = form.cleaned_data['name']
+                new_city = form.cleaned_data['name'].capitalize()
                 existing_city_count = City.objects.filter(name=new_city).count()
                 # to check for duplicated cities
                 if existing_city_count == 0:

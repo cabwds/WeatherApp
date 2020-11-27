@@ -76,8 +76,16 @@ WSGI_APPLICATION = 'Whether.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # making connection to remote postgresql in elementsql
+        # table content can be visualized also in the pgAdmin 4
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'tzzlqvsq',
+        'HOST':'john.db.elephantsql.com',
+        'USER':'tzzlqvsq',
+        'PASSWORD':'SFJGdEv9xYhkesfoTjcgbD5NPmuCGZQR',
+        'PORT':'5432',
     }
 }
 
